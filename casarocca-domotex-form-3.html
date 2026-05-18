@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASA ROCCA — Domotex China 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style> :root {
+    --red: #8B1A2B;
+    --red-light: #B03040;
+    --red-dim: rgba(139,26,43,0.07);
+    --cream: #F7F5F5;
+    --dark: #1C1C1C;
+    --mid: #4A4A4A;
+    --border: #DCDCDC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); min-height: 100vh; }
+  .header { background: var(--red); padding: 2.5rem 2rem 2rem; text-align: center; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.08) 40px, rgba(0,0,0,0.08) 41px); }
+  .header-badge { display: inline-block; border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.85); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.35rem 1rem; margin-bottom: 1.2rem; }
+  .header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,5vw,3.2rem); font-weight: 300; color: #fff; letter-spacing: 0.05em; line-height: 1.1; }
+  .header h1 span { color: rgba(255,255,255,0.75); font-style: italic; }
+  .header-sub { color: rgba(255,255,255,0.5); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.8rem; font-weight: 300; }
+  .header-line { width: 40px; height: 1px; background: rgba(255,255,255,0.5); margin: 1.2rem auto 0; }
+  .container { max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .intro-card { background: white; border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 1.25rem 1.5rem; margin-bottom: 2rem; font-size: 0.85rem; color: var(--mid); line-height: 1.7; }
+  .intro-card strong { color: var(--dark); font-weight: 500; }
+  .section { margin-bottom: 1.8rem; }
+  .section-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--dark); margin-bottom: 1rem; }
+  .field { margin-bottom: 1rem; }
+  label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--mid); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
+  label .req { color: var(--red); margin-left: 2px; }
+  input[type="text"], input[type="tel"], input[type="number"], textarea, select { width: 100%; padding: 0.7rem 0.9rem; border: 1px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--dark); outline: none; transition: border-color 0.2s, box-shadow 0.2s; appearance: none; border-radius: 0; }
+  input:focus, textarea:focus, select:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(139,26,43,0.08); }
+  textarea { min-height: 80px; resize: vertical; line-height: 1.6; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238B1A2B'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; cursor: pointer; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .product-card { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.75rem; border: 1.5px solid var(--border); background: white; cursor: pointer; transition: border-color 0.15s, background 0.15s; font-size: 0.8rem; color: var(--mid); line-height: 1.4; user-select: none; }
+  .product-card:hover { border-color: var(--red-light); }
+  .product-card input[type="checkbox"] { display: none; }
+  .product-card .pc-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .product-card .pc-text strong { display: block; font-size: 0.8rem; color: var(--dark); font-weight: 500; }
+  .product-card .pc-text small { font-size: 0.7rem; color: #aaa; }
+  .product-card.selected { border-color: var(--red); background: var(--red-dim); }
+  .product-card.selected .pc-text strong { color: var(--red); }
+  .product-detail-wrap { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .product-panel { display: none; border: 1px solid var(--border); border-top: 3px solid var(--red); background: white; padding: 1.25rem 1.5rem; animation: slideDown 0.25s ease; }
+  .product-panel.visible { display: block; }
+  .panel-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .panel-icon { font-size: 1.3rem; }
+  .panel-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dark); font-weight: 400; }
+  .panel-subtitle { font-size: 0.7rem; color: #aaa; letter-spacing: 0.05em; }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .check-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.65rem; border: 1px solid var(--border); background: var(--cream); cursor: pointer; transition: border-color 0.15s, background 0.15s; font-size: 0.78rem; color: var(--mid); user-select: none; }
+  .check-item:hover { border-color: var(--red-light); }
+  .check-item input[type="checkbox"] { width: 13px; height: 13px; flex-shrink: 0; accent-color: var(--red); }
+  .check-item.selected { border-color: var(--red); background: var(--red-dim); color: var(--dark); font-weight: 500; }
+  .radio-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .radio-btn { padding: 0.45rem 0.9rem; border: 1px solid var(--border); background: white; font-size: 0.78rem; color: var(--mid); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; user-select: none; }
+  .radio-btn:hover { border-color: var(--red-light); }
+  .radio-btn.active { border-color: var(--red); background: var(--red); color: white; font-weight: 500; }
+  .radio-btn input { display: none; }
+  .divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+  .submit-area { margin-top: 2.5rem; text-align: center; }
+  .submit-btn { background: var(--red); color: white; border: none; padding: 1rem 3rem; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.1s; display: inline-flex; align-items: center; gap: 0.6rem; }
+  .submit-btn:hover { background: #6B1220; }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-btn .arrow { font-size: 1rem; transition: transform 0.2s; }
+  .submit-btn:hover .arrow { transform: translateX(4px); }
+  .note { font-size: 0.72rem; color: #aaa; margin-top: 0.8rem; }
+  .result-card { display: none; background: var(--dark); color: white; padding: 2rem; margin-top: 2rem; text-align: center; animation: fadeUp 0.4s ease; }
+  .result-card.show { display: block; }
+  .result-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--red); margin-bottom: 0.5rem; font-style: italic; }
+  .result-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+  .copy-btn { background: var(--red); color: white; border: none; padding: 0.7rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; transition: opacity 0.2s; text-transform: uppercase; }
+  .copy-btn:hover { opacity: 0.85; }
+  .summary-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 1rem 1.2rem; margin: 1.2rem 0; text-align: left; font-size: 0.78rem; line-height: 1.9; color: rgba(255,255,255,0.75); white-space: pre-wrap; max-height: 300px; overflow-y: auto; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media(max-width: 500px) { .two-col, .product-grid, .check-grid { grid-template-columns: 1fr; } .radio-row { flex-direction: column; } }
+  .optional-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 1rem;
+  }
+  .toggle-track {
+    width: 36px;
+    height: 20px;
+    background: var(--border);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle-track.on { background: var(--red); }
+  .toggle-track.on::after { transform: translateX(16px); }
+  .toggle-label { font-size: 0.78rem; color: var(--mid); font-weight: 500; }
+  .optional-body { display: none; animation: slideDown 0.25s ease; }
+  .optional-body.open { display: block; }
+</style>
+</head>
+<body> <div class="header"> <div class="header-badge">Sales Requirement Form</div> <h1>CASA ROCCA<br><span>Domotex China 2026</span></h1> <div class="header-line"></div>
+</div> <div class="container"> <div class="intro-card"> <strong>วัตถุประสงค์ของฟอร์มนี้</strong><br>
+    ทีมสินค้าจะนำข้อมูล Requirement ที่คุณกรอกไปใช้ในการเดินงาน <strong>DOMOTEX China 2026</strong> เพื่อค้นหาสินค้า วัสดุ และคู่ค้าที่ตรงกับความต้องการของลูกค้ามากที่สุด<br><br>
+    <span style="color:var(--red);font-weight:500;">หมายเหตุ:</span> ข้อมูลที่ได้รับจะนำไปประเมินความเป็นไปได้ในการพัฒนาหรือนำเข้าสินค้าเท่านั้น — ทีมจะพิจารณาคัดเลือกตามความเหมาะสม ไม่ได้หมายความว่าทุก Requirement จะถูกนำมาพัฒนาทั้งหมด </div> <!-- 01: ข้อมูลเซลล์ --> <div class="section"> <div class="section-label">01</div> <div class="section-title">ข้อมูลผู้กรอก</div> <div class="field"> <label>ชื่อ-นามสกุล <span class="req">*</span></label> <input type="text" id="salesName" placeholder="เช่น สมชาย ใจดี"> </div> <div class="field"> <label>ชื่อลูกค้า / โปรเจกต์</label> <input type="text" id="projectName" placeholder="เช่น นายแพทย์สมศักดิ์ / โรงแรม X"> </div> </div> <div class="divider"></div> <!-- 02: เลือกสินค้า --> <div class="section"> <div class="section-label">02</div> <div class="section-title">เลือกประเภทสินค้า</div> <label style="margin-bottom:0.75rem">เลือกได้หลายประเภท — รายละเอียดจะแสดงตามที่เลือก <span class="req">*</span></label> <div class="product-grid"> <div class="product-card" data-target="panel-porcelain" onclick="toggleProduct(this)"> <input type="checkbox" name="product" value="กระเบื้องพอร์ซเลน"> <div class="pc-icon"></div> <div class="pc-text"><strong>กระเบื้องพอร์ซเลน</strong><small>ลายหิน / ลายไม้ / อื่นๆ</small></div> </div> <div class="product-card" data-target="panel-wpc" onclick="toggleProduct(this)"> <input type="checkbox" name="product" value="ไม้สังเคราะห์ WPC"> <div class="pc-icon"></div> <div class="pc-text"><strong>ไม้สังเคราะห์ WPC</strong><small>พื้น / ผนัง / ระแนง / แผ่น</small></div> </div> <div class="product-card" data-target="panel-lvt" onclick="toggleProduct(this)"> <input type="checkbox" name="product" value="กระเบื้องยางแผ่น LVT/SPC"> <div class="pc-icon"></div> <div class="pc-text"><strong>กระเบื้องยางแผ่น LVT/SPC</strong><small>ลายหิน / ไม้ / หินอ่อน / พรม</small></div> </div> <div class="product-card" data-target="panel-roll" onclick="toggleProduct(this)"> <input type="checkbox" name="product" value="กระเบื้องยางม้วน (Vinyl Roll)"> <div class="pc-icon"></div> <div class="pc-text"><strong>กระเบื้องยางม้วน</strong><small>Homogeneous / Heterogeneous / Acoustic</small></div> </div> <div class="product-card" data-target="panel-safety" onclick="toggleProduct(this)"> <input type="checkbox" name="product" value="Safety Flooring"> <div class="pc-icon"></div> <div class="pc-text"><strong>Safety Flooring</strong><small>Anti-slip / ESD / Hospital</small></div> </div> <div class="product-card" data-target="panel-wall" onclick="toggleProduct(this)"> <input type="checkbox" name="product" value="วัสดุตกแต่งผนัง"> <div class="pc-icon"></div> <div class="pc-text"><strong>วัสดุตกแต่งผนัง</strong><small>Wall Covering / Cladding</small></div> </div> </div> <!-- DYNAMIC PANELS --> <div class="product-detail-wrap"> <div class="product-panel" id="panel-porcelain"> <div class="panel-header"> <div class="panel-icon"></div> <div><div class="panel-title">กระเบื้องพอร์ซเลน</div><div class="panel-subtitle">PORCELAIN TILE</div></div> </div> <div class="field"><label>ลายที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-pattern" value="ลายหินอ่อน (Marble)"> ⬜ ลายหินอ่อน</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-pattern" value="ลายหินธรรมชาติ (Stone)"> ลายหินธรรมชาติ</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-pattern" value="ลายไม้ (Wood)"> ลายไม้</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-pattern" value="Cement / Terrazzo"> Cement/Terrazzo</label> <label class="check-item" onclick="toggleCheck(this); toggleReveal(this,'por-pattern-other-wrap')"><input type="checkbox" name="por-pattern" value="อื่นๆ"> อื่นๆ</label> </div> <div id="por-pattern-other-wrap" style="display:none; margin-top:0.5rem;"> <input type="text" id="por-pattern-other" placeholder="ระบุลาย เช่น Abstract, Zellige, Encaustic..."> </div> </div> <div class="field"><label>ผิวสัมผัส</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-finish" value="Polished (ขัดมัน)"> Polished</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-finish" value="Matte (ด้าน)"> Matte</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-finish" value="Semi-gloss"> Semi-gloss</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-finish" value="Textured / Anti-slip"> Textured/Anti-slip</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-finish" value="Lappato"> Lappato</label> <label class="check-item" onclick="toggleCheck(this); toggleReveal(this,'por-finish-other-wrap')"><input type="checkbox" name="por-finish" value="อื่นๆ"> อื่นๆ</label> </div> <div id="por-finish-other-wrap" style="display:none; margin-top:0.5rem;"> <input type="text" id="por-finish-other" placeholder="ระบุผิวสัมผัส เช่น Brushed, Carved, Natural..."> </div> </div> <div class="field"><label>ขนาดกระเบื้อง</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-size" value="60x60 cm"> 60×60 cm</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-size" value="60x120 cm"> 60×120 cm</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-size" value="80x80 cm"> 80×80 cm</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="por-size" value="Large Slab 120x240+"> Large Slab 120×240+</label> </div> </div> <div class="two-col"> <div class="field"><label>ตำแหน่งติดตั้ง</label> <select id="por-location"><option value="">— เลือก —</option><option>พื้นภายใน</option><option>ผนังภายใน</option><option>พื้นและผนัง</option><option>ภายนอกอาคาร</option><option>พื้นที่เปียก</option></select> </div> <div class="field"><label>ปริมาณ (ตร.ม.)</label><input type="number" id="por-qty" placeholder="เช่น 300"></div> </div> <div class="field"><label>โทนสี</label> <div class="radio-row" id="por-color"> <label class="radio-btn" onclick="selectRadio(this,'por-color')"><input type="radio" name="por-color" value="ขาว-เทา"> ขาว-เทา</label> <label class="radio-btn" onclick="selectRadio(this,'por-color')"><input type="radio" name="por-color" value="เบจ-น้ำตาล"> เบจ-น้ำตาล</label> <label class="radio-btn" onclick="selectRadio(this,'por-color')"><input type="radio" name="por-color" value="ดำ-เข้ม"> ดำ-เข้ม</label> <label class="radio-btn" onclick="selectRadio(this,'por-color')"><input type="radio" name="por-color" value="ไม่จำกัด"> ไม่จำกัด</label> </div> </div> <div class="field"><label>ราคาต่อตารางเมตรที่ต้องการ (฿/ตร.ม.)</label> <div class="radio-row" id="por-price"> <label class="radio-btn" onclick="selectRadio(this,'por-price')"><input type="radio" name="por-price" value="ต่ำกว่า ฿200"> &lt;200</label> <label class="radio-btn" onclick="selectRadio(this,'por-price')"><input type="radio" name="por-price" value="฿200–400"> 200–400</label> <label class="radio-btn" onclick="selectRadio(this,'por-price')"><input type="radio" name="por-price" value="฿400–700"> 400–700</label> <label class="radio-btn" onclick="selectRadio(this,'por-price')"><input type="radio" name="por-price" value="฿700–1,200"> 700–1,200</label> <label class="radio-btn" onclick="selectRadio(this,'por-price')"><input type="radio" name="por-price" value="มากกว่า ฿1,200"> 1,200+</label> </div> </div> <div class="field"><label>หมายเหตุ</label><input type="text" id="por-note" placeholder="เช่น ต้องการ Sample, ขนาดพิเศษ..."></div> </div> <div class="product-panel" id="panel-wpc"> <div class="panel-header"> <div class="panel-icon"></div> <div><div class="panel-title">ไม้สังเคราะห์ WPC</div><div class="panel-subtitle">WOOD PLASTIC COMPOSITE</div></div> </div> <div class="field"><label>ประเภทการใช้งาน</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-type" value="ไม้พื้น (Decking)"> ไม้พื้น (Decking)</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-type" value="ไม้ผนัง (Wall)"> ไม้ผนัง (Wall)</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-type" value="ไม้ระแนง (Lath)"> ไม้ระแนง</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-type" value="ไม้แผ่น (Plank)"> ไม้แผ่น</label> </div> </div> <div class="two-col"> <div class="field"><label>พื้นที่ติดตั้ง</label> <select id="wpc-area"><option value="">— เลือก —</option><option>ภายใน (Indoor)</option><option>ภายนอก (Outdoor)</option><option>ทั้งภายในและภายนอก</option><option>ริมสระว่ายน้ำ</option><option>เปียกชื้น</option></select> </div> <div class="field"><label>ปริมาณ (ตร.ม.)</label><input type="number" id="wpc-qty" placeholder="เช่น 200"></div> </div> <div class="field"><label>โทนสีไม้</label> <div class="radio-row" id="wpc-color"> <label class="radio-btn" onclick="selectRadio(this,'wpc-color')"><input type="radio" name="wpc-color" value="ไม้อ่อน"> ไม้อ่อน</label> <label class="radio-btn" onclick="selectRadio(this,'wpc-color')"><input type="radio" name="wpc-color" value="ไม้กลาง"> ไม้กลาง</label> <label class="radio-btn" onclick="selectRadio(this,'wpc-color')"><input type="radio" name="wpc-color" value="ไม้เข้ม"> ไม้เข้ม</label> <label class="radio-btn" onclick="selectRadio(this,'wpc-color')"><input type="radio" name="wpc-color" value="เทา"> เทา</label> </div> </div> <div class="field"><label>คุณสมบัติพิเศษ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-feat" value="Eco/Recycled"> Eco/Recycled</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-feat" value="กันปลวก"> กันปลวก</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-feat" value="Fire Retardant"> Fire Retardant</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wpc-feat" value="Anti-slip"> Anti-slip</label> </div> </div> <div class="field"><label>หมายเหตุ</label><input type="text" id="wpc-note" placeholder="เช่น ต้องการ Technical Spec, ขนาดพิเศษ..."></div> </div> <div class="product-panel" id="panel-lvt"> <div class="panel-header"> <div class="panel-icon"></div> <div><div class="panel-title">กระเบื้องยางแผ่น LVT/SPC</div><div class="panel-subtitle">LUXURY VINYL TILE / STONE PLASTIC COMPOSITE</div></div> </div> <div class="two-col"> <div class="field"><label>ประเภท Core</label> <div class="check-grid" style="grid-template-columns:1fr;"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-core" value="LVT (Flexible)"> LVT (Flexible)</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-core" value="SPC (Rigid Core)"> SPC (Rigid Core)</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-core" value="WPC Core"> WPC Core</label> <label class="check-item" onclick="toggleCheck(this); toggleReveal(this,'lvt-core-other-wrap')"><input type="checkbox" name="lvt-core" value="อื่นๆ"> อื่นๆ</label> </div> <div id="lvt-core-other-wrap" style="display:none; margin-top:0.5rem;"> <input type="text" id="lvt-core-other" placeholder="ระบุประเภท Core เช่น Cork, Foam..."> </div> </div> <div class="field"><label>ระบบติดตั้ง</label> <select id="lvt-install"><option value="">— เลือก —</option><option>Click Lock</option><option>Glue Down</option><option>Loose Lay</option></select> </div> </div> <div class="field"><label>ลายที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-pattern" value="ลายไม้"> ลายไม้</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-pattern" value="ลายหินอ่อน"> ⬜ ลายหินอ่อน</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-pattern" value="ลายหิน"> ลายหิน</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="lvt-pattern" value="ลายพรม"> ลายพรม</label> <label class="check-item" onclick="toggleCheck(this); toggleReveal(this,'lvt-pattern-other-wrap')"><input type="checkbox" name="lvt-pattern" value="อื่นๆ"> อื่นๆ</label> </div> <div id="lvt-pattern-other-wrap" style="display:none; margin-top:0.5rem;"> <input type="text" id="lvt-pattern-other" placeholder="ระบุลาย เช่น Terrazzo, Concrete, Abstract..."> </div> </div> <div class="two-col"> <div class="field"><label>Wear Layer ขั้นต่ำ</label> <select id="lvt-wear"><option value="">— เลือก —</option><option>0.2 mm (Residential)</option><option>0.3 mm (Light Commercial)</option><option>0.5 mm (Heavy Commercial)</option><option>0.7 mm+ (Heavy Duty)</option></select> </div> <div class="field"><label>ปริมาณ (ตร.ม.)</label><input type="number" id="lvt-qty" placeholder="เช่น 500"></div> </div> <div class="field"><label>หมายเหตุ</label><input type="text" id="lvt-note" placeholder="เช่น ต้องการ underlay, ความหนาพิเศษ..."></div> </div> <div class="product-panel" id="panel-roll"> <div class="panel-header"> <div class="panel-icon"></div> <div><div class="panel-title">กระเบื้องยางม้วน</div><div class="panel-subtitle">VINYL ROLL FLOORING</div></div> </div> <div class="field"><label>ประเภทที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-type" value="Homogeneous (ทนทาน/ทำความสะอาดง่าย)"> Homogeneous</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-type" value="Heterogeneous (ลวดลาย/ดีไซน์)"> Heterogeneous</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-type" value="Acoustic (ลดเสียง)"> Acoustic</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-type" value="ยังไม่แน่ใจ / เปิดรับทุกประเภท"> เปิดรับทุกประเภท</label> </div> </div> <div class="field"><label>คุณสมบัติที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-feat" value="ลดเสียง (dB สูง)"> ลดเสียง</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-feat" value="กันลื่น (Anti-slip)"> กันลื่น</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-feat" value="Antibacterial"> Antibacterial</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-feat" value="Eco / Low VOC"> Eco/Low VOC</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-feat" value="กันน้ำ / ทำความสะอาดง่าย"> กันน้ำ</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-feat" value="Heavy Duty (Traffic สูง)"> Heavy Duty</label> </div> </div> <div class="field"><label>ลาย / ดีไซน์ที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-design" value="Solid Color (สีเรียบ)"> Solid Color</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-design" value="ลายไม้"> ลายไม้</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-design" value="ลายหิน / Terrazzo"> ลายหิน</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="roll-design" value="Abstract / ลายกราฟิก"> Abstract</label> </div> </div> <div class="field"><label>ราคาต่อตารางเมตรที่ต้องการ (฿/ตร.ม.)</label> <div class="radio-row" id="roll-price"> <label class="radio-btn" onclick="selectRadio(this,'roll-price')"><input type="radio" name="roll-price" value="ต่ำกว่า ฿200"> &lt;200</label> <label class="radio-btn" onclick="selectRadio(this,'roll-price')"><input type="radio" name="roll-price" value="฿200–400"> 200–400</label> <label class="radio-btn" onclick="selectRadio(this,'roll-price')"><input type="radio" name="roll-price" value="฿400–700"> 400–700</label> <label class="radio-btn" onclick="selectRadio(this,'roll-price')"><input type="radio" name="roll-price" value="฿700–1,200"> 700–1,200</label> <label class="radio-btn" onclick="selectRadio(this,'roll-price')"><input type="radio" name="roll-price" value="มากกว่า ฿1,200"> 1,200+</label> </div> </div> <div class="two-col"> <div class="field"><label>ความหนาขั้นต่ำ (mm)</label> <select id="roll-thick"><option value="">— เลือก —</option><option>2 mm</option><option>2.5 mm</option><option>3 mm</option><option>3.5 mm+</option><option>ไม่จำกัด</option></select> </div> <div class="field"><label>ปริมาณ (ตร.ม.)</label><input type="number" id="roll-qty" placeholder="เช่น 800"></div> </div> <div class="field"><label>พื้นที่ใช้งาน</label> <div class="radio-row" id="roll-area"> <label class="radio-btn" onclick="selectRadio(this,'roll-area')"><input type="radio" name="roll-area" value="Healthcare"> Healthcare</label> <label class="radio-btn" onclick="selectRadio(this,'roll-area')"><input type="radio" name="roll-area" value="Education"> Education</label> <label class="radio-btn" onclick="selectRadio(this,'roll-area')"><input type="radio" name="roll-area" value="Office / Commercial"> Office</label> <label class="radio-btn" onclick="selectRadio(this,'roll-area')"><input type="radio" name="roll-area" value="Hospitality"> Hospitality</label> <label class="radio-btn" onclick="selectRadio(this,'roll-area')"><input type="radio" name="roll-area" value="Residential"> Residential</label> </div> </div> <div class="field"><label>หมายเหตุ</label><input type="text" id="roll-note" placeholder="เช่น ต้องการดูตัวอย่างลาย, โทนสีอ่อน, มาตรฐาน EN..."></div> </div> <div class="product-panel" id="panel-safety"> <div class="panel-header"> <div class="panel-icon"></div> <div><div class="panel-title">Safety Flooring</div><div class="panel-subtitle">ANTI-SLIP / ESD / SPECIALTY</div></div> </div> <div class="field"><label>ประเภท Safety ที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="safety-type" value="Anti-slip"> Anti-slip</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="safety-type" value="ESD/Anti-static"> ESD/Anti-static</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="safety-type" value="Conductive (Clean Room)"> Conductive</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="safety-type" value="Wet Area"> Wet Area</label> </div> </div> <div class="field"><label>พื้นที่ใช้งาน</label> <div class="radio-row" id="safety-area"> <label class="radio-btn" onclick="selectRadio(this,'safety-area')"><input type="radio" name="safety-area" value="Healthcare"> Healthcare</label> <label class="radio-btn" onclick="selectRadio(this,'safety-area')"><input type="radio" name="safety-area" value="Industrial"> Industrial</label> <label class="radio-btn" onclick="selectRadio(this,'safety-area')"><input type="radio" name="safety-area" value="Clean Room"> Clean Room</label> <label class="radio-btn" onclick="selectRadio(this,'safety-area')"><input type="radio" name="safety-area" value="Public Area"> Public</label> </div> </div> <div class="two-col"> <div class="field"><label>R-Rating ที่ต้องการ</label> <select id="safety-r"><option value="">— เลือก —</option><option>R9</option><option>R10</option><option>R11</option><option>R12</option><option>R13</option></select> </div> <div class="field"><label>ปริมาณ (ตร.ม.)</label><input type="number" id="safety-qty" placeholder="เช่น 400"></div> </div> <div class="field"><label>หมายเหตุ</label><input type="text" id="safety-note" placeholder="เช่น ต้องการ Certificate..."></div> </div> <div class="product-panel" id="panel-wall"> <div class="panel-header"> <div class="panel-icon"></div> <div><div class="panel-title">วัสดุตกแต่งผนัง</div><div class="panel-subtitle">WALL COVERING / CLADDING</div></div> </div> <div class="field"><label>ประเภทวัสดุผนัง</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wall-type" value="Vinyl Wall Covering"> Vinyl Wall</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wall-type" value="WPC Wall Panel"> WPC Panel</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wall-type" value="SPC Wall Panel"> SPC Wall</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="wall-type" value="3D Wall Texture"> 3D Texture</label> <label class="check-item" onclick="toggleCheck(this); toggleWallOther(this)"><input type="checkbox" name="wall-type" value="วัสดุอื่นๆ"> วัสดุอื่นๆ</label> </div> <div id="wall-other-wrap" style="display:none; margin-top:0.5rem;"> <input type="text" id="wall-other-text" placeholder="ระบุประเภทวัสดุ เช่น กระจก, อิฐ, โลหะ..."> </div> </div> <div class="two-col"> <div class="field"><label>พื้นที่ผนัง (ตร.ม.)</label><input type="number" id="wall-qty" placeholder="เช่น 150"></div> <div class="field"><label>ความสูงผนัง (ม.)</label><input type="number" id="wall-height" placeholder="เช่น 3.2" step="0.1"></div> </div> <div class="field"><label>ราคาต่อตารางเมตรที่ต้องการ (฿/ตร.ม.)</label> <div class="radio-row" id="wall-price"> <label class="radio-btn" onclick="selectRadio(this,'wall-price')"><input type="radio" name="wall-price" value="ต่ำกว่า ฿300"> &lt;300</label> <label class="radio-btn" onclick="selectRadio(this,'wall-price')"><input type="radio" name="wall-price" value="฿300–600"> 300–600</label> <label class="radio-btn" onclick="selectRadio(this,'wall-price')"><input type="radio" name="wall-price" value="฿600–1,000"> 600–1,000</label> <label class="radio-btn" onclick="selectRadio(this,'wall-price')"><input type="radio" name="wall-price" value="฿1,000–2,000"> 1,000–2,000</label> <label class="radio-btn" onclick="selectRadio(this,'wall-price')"><input type="radio" name="wall-price" value="มากกว่า ฿2,000"> 2,000+</label> </div> </div> <div class="field"><label>หมายเหตุ</label><input type="text" id="wall-note" placeholder="เช่น ลายพิเศษ, Acoustic Wall..."></div> </div> </div> </div> <div class="divider"></div> <!-- 03: ข้อมูลโปรเจกต์ (Optional) --> <div class="section"> <div class="section-label">03</div> <div class="section-title">ข้อมูลโปรเจกต์</div> <div class="optional-toggle" onclick="toggleOptional()"> <div class="toggle-track" id="optToggle"></div> <span class="toggle-label" id="optLabel">ไม่บังคับ — คลิกเพื่อกรอกเพิ่มเติม</span> </div> <div class="optional-body" id="optionalBody"> <div class="field"><label>ประเภทอาคาร</label> <div class="radio-row" id="areaType"> <label class="radio-btn" onclick="selectRadio(this,'areaType')"><input type="radio" name="area" value="Residential"> Residential</label> <label class="radio-btn" onclick="selectRadio(this,'areaType')"><input type="radio" name="area" value="Commercial"> Commercial</label> <label class="radio-btn" onclick="selectRadio(this,'areaType')"><input type="radio" name="area" value="Hospitality"> Hospitality</label> <label class="radio-btn" onclick="selectRadio(this,'areaType')"><input type="radio" name="area" value="Healthcare"> Healthcare</label> <label class="radio-btn" onclick="selectRadio(this,'areaType')"><input type="radio" name="area" value="Education"> Education</label> <label class="radio-btn" onclick="selectRadio(this,'areaType')"><input type="radio" name="area" value="Industrial"> Industrial</label> </div> </div> <div class="two-col"> <div class="field"><label>Timeline ส่งมอบ</label> <select id="timeline"><option value="">— เลือก —</option><option>เร่งด่วน (ภายใน 1 เดือน)</option><option>1–3 เดือน</option><option>3–6 เดือน</option><option>6–12 เดือน</option><option>มากกว่า 1 ปี</option><option>ยังไม่แน่ใจ</option></select> </div> <div class="field"><label>ระยะของโปรเจกต์</label> <select id="projectStage"><option value="">— เลือก —</option><option>ขั้นออกแบบ</option><option>เตรียมก่อสร้าง</option><option>ระหว่างก่อสร้าง</option><option>ใกล้ส่งมอบ</option><option>โปรเจกต์ในอนาคต</option></select> </div> </div> <div class="field"><label>งบประมาณรวม</label> <select id="totalBudget"><option value="">— เลือก —</option><option>ต่ำกว่า ฿100,000</option><option>฿100,000 – 500,000</option><option>฿500,000 – 1,000,000</option><option>฿1,000,000 – 5,000,000</option><option>มากกว่า ฿5,000,000</option><option>ยังไม่ระบุ</option></select> </div> <div class="field"><label>Certification ที่ต้องการ</label> <div class="check-grid"> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="cert" value="LEED"> LEED</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="cert" value="WELL"> WELL</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="cert" value="ISO"> ISO</label> <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="cert" value="มอก."> มอก.</label> </div> </div> <div class="field"><label>หมายเหตุ / ข้อมูลเพิ่มเติม</label> <textarea id="notes" placeholder="เช่น ต้องการ Sample, Technical Spec, รายละเอียดพิเศษ..."></textarea> </div> </div> </div> <div class="submit-area"> <button class="submit-btn" onclick="generateSummary()">สรุป Requirement <span class="arrow">→</span></button> <p class="note">ระบบจะสรุปข้อมูลแยกตามประเภทสินค้าที่เลือก</p> </div> <div class="result-card" id="resultCard"> <div class="result-title">Requirement Summary</div> <div class="result-sub">สรุปสำหรับงาน Domotex China 2026</div> <div class="summary-box" id="summaryBox"></div> <button class="copy-btn" onclick="copySummary()"> Copy สรุป</button> <div style="margin-top:0.6rem;font-size:0.7rem;color:rgba(255,255,255,0.35)">คัดลอกแล้วส่งให้ทีมหรือบันทึกในโน้ต</div> </div> </div> <script> function toggleProduct(card) {
+    const cb = card.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    card.classList.toggle('selected', cb.checked);
+    const panel = document.getElementById(card.dataset.target);
+    if (panel) panel.classList.toggle('visible', cb.checked);
+  }
+
+  function toggleCheck(label) {
+    const cb = label.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    label.classList.toggle('selected', cb.checked);
+  }
+
+  function selectRadio(label, groupId) {
+    document.getElementById(groupId).querySelectorAll('.radio-btn').forEach(b => b.classList.remove('active'));
+    label.classList.add('active');
+    label.querySelector('input[type="radio"]').checked = true;
+  }
+
+  function getChecked(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c => c.value).join(', ') || '—';
+  }
+  function getRadio(name) {
+    const r = document.querySelector(`input[name="${name}"]:checked`);
+    return r ? r.value : '—';
+  }
+  function v(id) { return document.getElementById(id)?.value?.trim() || '—'; }
+
+  const panelSummaries = {
+    'panel-porcelain': () => {
+      let patterns = getChecked('por-pattern');
+      const patOther = v('por-pattern-other');
+      if (patterns.includes('อื่นๆ') && patOther !== '—') patterns = patterns.replace('อื่นๆ', `อื่นๆ (${patOther})`);
+      let finishes = getChecked('por-finish');
+      const finOther = v('por-finish-other');
+      if (finishes.includes('อื่นๆ') && finOther !== '—') finishes = finishes.replace('อื่นๆ', `อื่นๆ (${finOther})`);
+      return [` กระเบื้องพอร์ซเลน`, `   ลาย: ${patterns}`, `   ผิว: ${finishes}`, `   ขนาด: ${getChecked('por-size')}`, `   ตำแหน่ง: ${v('por-location')}  |  ปริมาณ: ${v('por-qty')} ตร.ม.`, `   โทนสี: ${getRadio('por-color')}`, `   ราคา/ตร.ม.: ${getRadio('por-price')}`, `   หมายเหตุ: ${v('por-note')}`];
+    },
+    'panel-wpc': () => [` ไม้สังเคราะห์ WPC`, `   ประเภท: ${getChecked('wpc-type')}`, `   พื้นที่: ${v('wpc-area')}  |  ปริมาณ: ${v('wpc-qty')} ตร.ม.`, `   โทนสี: ${getRadio('wpc-color')}`, `   คุณสมบัติ: ${getChecked('wpc-feat')}`, `   หมายเหตุ: ${v('wpc-note')}`],
+    'panel-lvt': () => {
+      let cores = getChecked('lvt-core');
+      const coreOther = v('lvt-core-other');
+      if (cores.includes('อื่นๆ') && coreOther !== '—') cores = cores.replace('อื่นๆ', `อื่นๆ (${coreOther})`);
+      let patterns = getChecked('lvt-pattern');
+      const patOther = v('lvt-pattern-other');
+      if (patterns.includes('อื่นๆ') && patOther !== '—') patterns = patterns.replace('อื่นๆ', `อื่นๆ (${patOther})`);
+      return [` กระเบื้องยางแผ่น LVT/SPC`, `   Core: ${cores}  |  ติดตั้ง: ${v('lvt-install')}`, `   ลาย: ${patterns}`, `   Wear Layer: ${v('lvt-wear')}  |  ปริมาณ: ${v('lvt-qty')} ตร.ม.`, `   หมายเหตุ: ${v('lvt-note')}`];
+    },
+    'panel-roll': () => [` กระเบื้องยางม้วน`, `   ประเภท: ${getChecked('roll-type')}`, `   คุณสมบัติ: ${getChecked('roll-feat')}`, `   ลาย/ดีไซน์: ${getChecked('roll-design')}`, `   ราคา/ตร.ม.: ${getRadio('roll-price')}`, `   ความหนา: ${v('roll-thick')}  |  ปริมาณ: ${v('roll-qty')} ตร.ม.`, `   พื้นที่: ${getRadio('roll-area')}`, `   หมายเหตุ: ${v('roll-note')}`],
+    'panel-safety': () => [` Safety Flooring`, `   ประเภท: ${getChecked('safety-type')}`, `   พื้นที่: ${getRadio('safety-area')}`, `   R-Rating: ${v('safety-r')}  |  ปริมาณ: ${v('safety-qty')} ตร.ม.`, `   หมายเหตุ: ${v('safety-note')}`],
+
+    'panel-wall': () => {
+      const types = getChecked('wall-type');
+      const otherText = v('wall-other-text');
+      const fullType = (types.includes('วัสดุอื่นๆ') && otherText !== '—') ? types.replace('วัสดุอื่นๆ', `วัสดุอื่นๆ (${otherText})`) : types;
+      return [` วัสดุตกแต่งผนัง`, `   ประเภท: ${fullType}`, `   พื้นที่: ${v('wall-qty')} ตร.ม.  |  ความสูง: ${v('wall-height')} ม.`, `   ราคา/ตร.ม.: ${getRadio('wall-price')}`, `   หมายเหตุ: ${v('wall-note')}`];
+    },
+  };
+
+  // ============================================================
+  // วาง URL ของ Apps Script Web App ที่นี่ หลัง Deploy แล้ว
+  // ============================================================
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx4W8V2aaCnRrRncOHZajnKy51qb3F1PEXLQ8zqgUeJaO9LNUZo_F41dGPxzv-b5jrW/exec';
+
+  function generateSummary() {
+    const salesName = v('salesName');
+    if (salesName === '—') { alert('กรุณาระบุชื่อผู้กรอกก่อนนะครับ'); return; }
+    const selected = [...document.querySelectorAll('.product-panel.visible')].map(p => p.id);
+    if (!selected.length) { alert('กรุณาเลือกประเภทสินค้าอย่างน้อย 1 ประเภทครับ'); return; }
+
+    // --- สร้างข้อความสรุป ---
+    const lines = [
+      ` CASA ROCCA — Domotex China 2026`,
+      `${'─'.repeat(42)}`,
+      ` เซลล์: ${salesName}`,
+      ` ลูกค้า/โปรเจกต์: ${v('projectName')}`,
+      ``, `══ รายละเอียดสินค้าที่ต้องการ ══`,
+    ];
+    selected.forEach(id => { const fn = panelSummaries[id]; if (fn) { lines.push(''); lines.push(...fn()); } });
+    lines.push('', `── ข้อมูลโปรเจกต์ ──`,
+      ` ประเภทอาคาร: ${getRadio('area')}`,
+      ` Timeline: ${v('timeline')}  |  ระยะ: ${v('projectStage')}`,
+      ` งบรวม: ${v('totalBudget')}`,
+      ` Certification: ${getChecked('cert')}`,
+      ` หมายเหตุ: ${v('notes')}`,
+      '', `${'─'.repeat(42)}`,
+      `Generated: ${new Date().toLocaleString('th-TH')}`
+    );
+    document.getElementById('summaryBox').textContent = lines.join('\n');
+    document.getElementById('resultCard').classList.add('show');
+    document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // --- ส่งข้อมูลเข้า Google Sheet ---
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+
+    // resolve อื่นๆ
+    let porPattern = getChecked('por-pattern');
+    const porPatOther = v('por-pattern-other');
+    if (porPattern.includes('อื่นๆ') && porPatOther !== '—') porPattern = porPattern.replace('อื่นๆ', `อื่นๆ (${porPatOther})`);
+    let porFinish = getChecked('por-finish');
+    const porFinOther = v('por-finish-other');
+    if (porFinish.includes('อื่นๆ') && porFinOther !== '—') porFinish = porFinish.replace('อื่นๆ', `อื่นๆ (${porFinOther})`);
+    let lvtCore = getChecked('lvt-core');
+    const lvtCoreOther = v('lvt-core-other');
+    if (lvtCore.includes('อื่นๆ') && lvtCoreOther !== '—') lvtCore = lvtCore.replace('อื่นๆ', `อื่นๆ (${lvtCoreOther})`);
+    let lvtPattern = getChecked('lvt-pattern');
+    const lvtPatOther = v('lvt-pattern-other');
+    if (lvtPattern.includes('อื่นๆ') && lvtPatOther !== '—') lvtPattern = lvtPattern.replace('อื่นๆ', `อื่นๆ (${lvtPatOther})`);
+    let wallType = getChecked('wall-type');
+    const wallOther = v('wall-other-text');
+    if (wallType.includes('วัสดุอื่นๆ') && wallOther !== '—') wallType = wallType.replace('วัสดุอื่นๆ', `วัสดุอื่นๆ (${wallOther})`);
+
+    const payload = {
+      salesName:        salesName,
+      projectName:      v('projectName'),
+      selectedProducts: selected.map(id => id.replace('panel-','')).join(', '),
+      // Porcelain
+      por_pattern:  porPattern,
+      por_finish:   porFinish,
+      por_size:     getChecked('por-size'),
+      por_location: v('por-location'),
+      por_qty:      v('por-qty'),
+      por_color:    getRadio('por-color'),
+      por_price:    getRadio('por-price'),
+      por_note:     v('por-note'),
+      // WPC
+      wpc_type:  getChecked('wpc-type'),
+      wpc_area:  v('wpc-area'),
+      wpc_qty:   v('wpc-qty'),
+      wpc_color: getRadio('wpc-color'),
+      wpc_feat:  getChecked('wpc-feat'),
+      wpc_note:  v('wpc-note'),
+      // LVT
+      lvt_core:    lvtCore,
+      lvt_install: v('lvt-install'),
+      lvt_pattern: lvtPattern,
+      lvt_wear:    v('lvt-wear'),
+      lvt_qty:     v('lvt-qty'),
+      lvt_note:    v('lvt-note'),
+      // Roll
+      roll_type:   getChecked('roll-type'),
+      roll_feat:   getChecked('roll-feat'),
+      roll_design: getChecked('roll-design'),
+      roll_price:  getRadio('roll-price'),
+      roll_thick:  v('roll-thick'),
+      roll_qty:    v('roll-qty'),
+      roll_area:   getRadio('roll-area'),
+      roll_note:   v('roll-note'),
+      // Safety
+      safety_type: getChecked('safety-type'),
+      safety_area: getRadio('safety-area'),
+      safety_r:    v('safety-r'),
+      safety_qty:  v('safety-qty'),
+      safety_note: v('safety-note'),
+      // Wall
+      wall_type:   wallType,
+      wall_qty:    v('wall-qty'),
+      wall_height: v('wall-height'),
+      wall_price:  getRadio('wall-price'),
+      wall_note:   v('wall-note'),
+      // Project
+      area:         getRadio('area'),
+      timeline:     v('timeline'),
+      projectStage: v('projectStage'),
+      totalBudget:  v('totalBudget'),
+      cert:         getChecked('cert'),
+      notes:        v('notes'),
+    };
+
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = 'กำลังส่ง...';
+    btn.disabled = true;
+
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      btn.textContent = 'ส่งข้อมูลแล้ว ✓';
+      btn.style.background = '#2D6A4F';
+      setTimeout(() => {
+        btn.textContent = 'สรุป Requirement →';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    })
+    .catch(() => {
+      btn.textContent = 'สรุป Requirement →';
+      btn.disabled = false;
+    });
+  }
+
+  function copySummary() {
+    navigator.clipboard.writeText(document.getElementById('summaryBox').textContent).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = ' Copied!';
+      setTimeout(() => btn.textContent = ' Copy สรุป', 2000);
+    });
+  }
+
+  function toggleOptional() {
+    const track = document.getElementById('optToggle');
+    const body = document.getElementById('optionalBody');
+    const label = document.getElementById('optLabel');
+    const isOn = track.classList.toggle('on');
+    body.classList.toggle('open', isOn);
+    label.textContent = isOn ? 'กรอกข้อมูลโปรเจกต์เพิ่มเติม' : 'ไม่บังคับ — คลิกเพื่อกรอกเพิ่มเติม';
+  }
+
+  function toggleWallOther(label) {
+    const cb = label.querySelector('input[type="checkbox"]');
+    document.getElementById('wall-other-wrap').style.display = cb.checked ? 'block' : 'none';
+    if (!cb.checked) document.getElementById('wall-other-text').value = '';
+  }
+
+  function toggleReveal(label, wrapId) {
+    const cb = label.querySelector('input[type="checkbox"]');
+    const wrap = document.getElementById(wrapId);
+    if (!wrap) return;
+    wrap.style.display = cb.checked ? 'block' : 'none';
+    if (!cb.checked) wrap.querySelector('input[type="text"]').value = '';
+  }
+</script>
+</body>
+</html>
