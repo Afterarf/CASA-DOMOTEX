@@ -323,7 +323,7 @@
       // WPC
       wpc_type:  getChecked('wpc-type'),
       wpc_area:  v('wpc-area'),
-      wpc_qty:   v('wpc-qty'),
+      wpc_price: getRadio('wpc-price'),
       wpc_color: getRadio('wpc-color'),
       wpc_feat:  getChecked('wpc-feat'),
       wpc_note:  v('wpc-note'),
@@ -332,7 +332,7 @@
       lvt_install: v('lvt-install'),
       lvt_pattern: lvtPattern,
       lvt_wear:    v('lvt-wear'),
-      lvt_qty:     v('lvt-qty'),
+      lvt_price:   getRadio('lvt-price'),
       lvt_note:    v('lvt-note'),
       // Roll
       roll_type:   getChecked('roll-type'),
@@ -343,24 +343,34 @@
       roll_qty:    v('roll-qty'),
       roll_area:   getRadio('roll-area'),
       roll_note:   v('roll-note'),
-            // Other
-      other_product: v('other-product'),
-      other_detail:  v('other-detail'),
-      other_price:   getRadio('other-price'),
-      other_note:    v('other-note'),
+      // Other
+      other_product:    v('other-product'),
+      other_detail:     v('other-detail'),
+      other_price:      getRadio('other-price'),
+      other_area:       getRadio('other-area'),
+      other_competitor: v('other-competitor'),
+      other_note:       v('other-note'),
       // Wall
       wall_type:   wallType,
       wall_qty:    v('wall-qty'),
       wall_height: v('wall-height'),
+      wall_width:  v('wall-width'),
       wall_price:  getRadio('wall-price'),
       wall_note:   v('wall-note'),
       // Project
+      proj_product: getChecked('proj-product'),
       area:         getRadio('area'),
       timeline:     v('timeline'),
       projectStage: v('projectStage'),
       totalBudget:  v('totalBudget'),
-      cert:         getChecked('cert'),
+      cert:         (() => { let c = getChecked('cert'); const co = v('cert-other'); return (c.includes('อื่นๆ') && co !== '—') ? c.replace('อื่นๆ', `อื่นๆ (${co})`) : c; })(),
       notes:        v('notes'),
+      // Xinfeng
+      xin_driver: getChecked('xin-driver'),
+      xin_need:   v('xin-need'),
+      // ECO
+      eco_driver: getChecked('eco-driver'),
+      eco_need:   v('eco-need'),
     };
 
     const btn = document.querySelector('.submit-btn');
